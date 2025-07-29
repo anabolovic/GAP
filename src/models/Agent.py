@@ -6,3 +6,6 @@ class Agent:
 
     def __str__(self):
         return f"Agent {self.id} | Capacity: {self.capacity}"
+    
+    def reset(self):
+        self.remaining_capacity = self.capacity

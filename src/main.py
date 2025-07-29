@@ -1,8 +1,10 @@
-from data.GapInstance import create_test_instance
+from data.GapInstance import create_test_instance, create_large_test_instance
 from solvers.greedy_solver import calculate_total_cost, greedy_assignment
+from visualisation.plot_assignment import plot_assignment
+
 
 if __name__ == "__main__":
-    instance = create_test_instance()
+    instance = create_large_test_instance()
     print(instance)
 
     print("\n--- Greedy Assignment ---")
@@ -16,4 +18,6 @@ if __name__ == "__main__":
 
     total_cost = calculate_total_cost(instance, assignment)
     print(f"\nUkupan trošak: {total_cost}")
+    plot_assignment(instance, assignment)
+
 
