@@ -13,8 +13,8 @@ def naive_assignment(instance: GAPInstance) -> dict[int, int]:
                 agent.remaining_capacity -= demand
                 assignment[task.id] = agent_id
                 assigned = True
-                break  # Prvi koji može – dodeljen
+                break 
         if not assigned:
-            assignment[task.id] = -1  # Nije moguće
+            assignment[task.id] = -1 
 
     return assignment

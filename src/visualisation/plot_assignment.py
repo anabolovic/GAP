@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 from data.GapInstance import GAPInstance
 from collections import defaultdict
 
-def plot_assignment(instance: GAPInstance, assignment: dict[int, int]):
+def plot_assignment(instance: GAPInstance, assignment: dict[int, int], title: str):
     agent_loads = defaultdict(list)  # agent_id → list of (task_id, demand)
 
     for task in instance.tasks:
@@ -30,7 +30,7 @@ def plot_assignment(instance: GAPInstance, assignment: dict[int, int]):
 
     ax.set_xlabel("Agent ID")
     ax.set_ylabel("Zauzeće kapaciteta")
-    ax.set_title("Greedy Assignment Vizualizacija")
+    ax.set_title(title + " Assignment Vizualizacija")
     ax.legend()
     plt.tight_layout()
     plt.show()

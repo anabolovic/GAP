@@ -9,3 +9,7 @@ class Agent:
     
     def reset(self):
         self.remaining_capacity = self.capacity
+
+    def can_assign(self, task, agent_id):
+        return self.remaining_capacity >= task.demands[agent_id]
+

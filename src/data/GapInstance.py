@@ -1,6 +1,6 @@
 import random
 from models.Agent import Agent
-from Task import Task
+from models.Task import Task
 
 
 class GAPInstance:
@@ -94,46 +94,4 @@ def create_tricky_instance_v2() -> GAPInstance:
         tasks.append(Task(id=t_id, demands=demands, costs=costs))
 
     return GAPInstance(agents, tasks)
-
-def create_local_search_favored_instance() -> GAPInstance:
-    import random
-    random.seed(123)
-
-    agents = []
-    tasks = []
-
-    num_cheap_agents = 10
-    num_strong_agents = 10
-    total_agents = num_cheap_agents + num_strong_agents
-
-    # 10 slabih agenata sa tačno 30 kapaciteta
-    for i in range(num_cheap_agents):
-        agents.append(Agent(id=i, capacity=30))
-
-    # 10 jakih agenata sa 150 kapaciteta
-    for i in range(num_cheap_agents, total_agents):
-        agents.append(Agent(id=i, capacity=150))
-
-    # 20 malih zadataka
-    for t_id in range(20):
-        demands = [5] * total_agents
-        costs = [10] * total_agents  # svi izgledaju jednako dobro
-        tasks.append(Task(id=t_id, demands=demands, costs=costs))
-
-    # 10 velikih zadataka (50)
-    for t_id in range(20, 30):
-        demands = []
-        costs = []
-        for a_id in range(total_agents):
-            if a_id < num_cheap_agents:
-                demands.append(50)
-                costs.append(999)  # fizički i ekonomski nemoguće
-            else:
-                demands.append(50)
-                costs.append(5 + (a_id % 3))  # jefitno za jake agente
-        tasks.append(Task(id=t_id, demands=demands, costs=costs))
-
-    return GAPInstance(agents, tasks)
-
-
 

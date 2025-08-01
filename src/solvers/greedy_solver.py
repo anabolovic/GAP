@@ -2,9 +2,6 @@ from data.GapInstance import GAPInstance
 from typing import Optional
 
 def greedy_assignment(instance: GAPInstance) -> dict[int, int]:
-    """
-    Vraća rešenje kao dict: {task_id: agent_id}
-    """
     assignment = {}
 
     for task in instance.tasks:
