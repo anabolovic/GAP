@@ -6,7 +6,40 @@ from solvers.simulated_annealing import simulated_annealing, simulated_annealing
 from solvers.greedy_solver import greedy_assignment, calculate_total_cost
 from solvers.naive_solver import naive_assignment
 from visualisation.plot_assignment import plot_assignment
-from data.BigDataGenerator import generate_hard_instance, generate_trap_instance
+
+import random
+from data.GapInstance import GAPInstance
+from models.Agent import Agent
+from models.Task import Task
+
+
+def generate_hard_instance(num_agents=30, num_tasks=300, seed=42):
+    random.seed(seed)
+
+    agents = []
+    for i in range(num_agents):
+        capacity = random.randint(100, 200)
+        agents.append(Agent(i, capacity))
+
+    tasks = []
+    for t in range(num_tasks):
+        costs = []
+        demands = []
+
+        for a in range(num_agents):
+
+            if a < 3:
+                costs.append(random.randint(1, 5))
+                demands.append(random.randint(30, 50))
+            else:
+                costs.append(random.randint(40, 100))
+                demands.append(random.randint(5, 20))
+
+
+        tasks.append(Task(t, demands, costs))
+
+    return GAPInstance(agents, tasks)
+
 
 
 def calculate_assignment_quality(instance, assignment, label=""):
@@ -18,7 +51,7 @@ def calculate_assignment_quality(instance, assignment, label=""):
 
 
 if __name__ == "__main__":
-    original_instance = generate_trap_instance()
+    original_instance = generate_hard_instance()
 
     instance_sa = copy.deepcopy(original_instance)
     print("\n--- Simulated Annealing Assignment (v1) ---")

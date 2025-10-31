@@ -134,7 +134,6 @@ def simulated_annealing(
     moves_per_step=(1, 5),
     seed=None
 ):
-    """Zadržavamo staro ime radi kompatibilnosti sa Battlefild.py i drugim importima."""
     return simulated_annealing_v2(
         instance=instance,
         initial_temp=initial_temp,
