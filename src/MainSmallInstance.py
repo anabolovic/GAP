@@ -16,7 +16,7 @@ def generate_small_instance(num_agents=5, num_tasks=10, seed=42):
 
     agents = []
     for i in range(num_agents):
-        capacity = random.randint(40, 70)  # manji kapaciteti radi preglednosti
+        capacity = random.randint(40, 70)  
         agents.append(Agent(i, capacity))
 
     tasks = []
@@ -25,7 +25,6 @@ def generate_small_instance(num_agents=5, num_tasks=10, seed=42):
         demands = []
 
         for a in range(num_agents):
-            # manji broj opcija — neka troškovi i zahtevi budu u razumnom opsegu
             costs.append(random.randint(5, 30))
             demands.append(random.randint(5, 25))
 
@@ -44,7 +43,6 @@ def calculate_assignment_quality(instance, assignment, label=""):
 
 if __name__ == "__main__":
     instance = generate_small_instance()
-    print("\n--- Mala instanca (5 agenata, 10 taskova) ---")
     for agent in instance.agents:
         print(f"Agent {agent.id}: kapacitet = {agent.capacity}")
     print("Zadaci (trošak po agentu / zahtev po agentu):")
